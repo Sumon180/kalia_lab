@@ -1,12 +1,21 @@
 import {
     Card,
-    Input,
+    Checkbox,
     Typography,
-    Button
+    Button,
+    Input
 } from "@material-tailwind/react";
+import { Fragment, useState } from "react";
 import { AiOutlineCalendar } from 'react-icons/ai';
 
-const Page4 = () => {
+const Page5 = () => {
+    const [toggle, setToggle] = useState(false)
+
+    const handleClick = () => {
+        setToggle(!toggle)
+    }
+
+
     return (
         <>
             <div className="flex flex-col">
@@ -37,30 +46,38 @@ const Page4 = () => {
                     </div>
                 </div>
                 <div className="flex mx-80 mt-10">
-                    <div className=" bg-white border-t-4 border-gray-700 drop-shadow-xl">
-                        <div className="p-8">
-                            <div>
-                                <div className="my-3 w-[35rem]">
-                                    <Card color="transparent" shadow={false}>
-                                        <Typography variant="h4" color="blue-gray">
-                                            Geben Sie Ihre Kontaktdaten ein
-                                        </Typography>
-                                        <Typography color="gray" className="mt-1 font-normal">
-                                            Geben Sie Ihre Kontaktdaten ein, um im Falle von Änderungen informiert zu werden
-                                        </Typography>
-                                        <form className="mt-8 mb-2 w-full  ">
-                                            <div className="mb-4 w-full flex flex-col gap-6">
-                                                <Input size="lg" label="Vorname*" />
-                                                <Input size="lg" label="Nachname*" />
-                                                <Input size="lg" label="Email" />
-                                                <Input size="lg" label="Mobiltelefon*" />
-                                                <textarea itemType="text" className="border border-gray-400" />
-                                            </div>
-                                        </form>
-                                    </Card>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <p className="text-gray-700">Felder mit * sind Pflichtfelder</p>
+                    <div>
+                        <div className=" bg-white border-t-4 border-gray-700 drop-shadow-xl">
+                            <div className="p-8">
+                                <div>
+                                    <div className="my-3 w-[35rem]">
+                                        <Card color="transparent" shadow={false}>
+                                            <Typography variant="h4" color="blue-gray">
+                                                Geben Sie Ihre Kontaktdaten ein
+                                            </Typography>
+                                        </Card>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <Fragment>
+                                            <Checkbox id="ripple-on" label="Zahlung vor Ort" ripple={true} />
+                                            <Checkbox onClick={handleClick} id="ripple-off" label="Kreditkarte" ripple={false} />
+                                        </Fragment>
+                                    </div>
+                                    {
+                                        toggle && <div>
+                                            <form className="mt-8 mb-2 w-full  ">
+                                                <div className="mb-4 w-full flex flex-col gap-6">
+                                                    <Input size="lg" label="Vorname*" />
+                                                    <Input size="lg" label="Nachname*" />
+                                                    <div className="flex gap-5">
+                                                        <Input size="lg" label="Email" />
+                                                        <Input size="lg" label="Mobiltelefon*" />
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <p className=" text-gray-400">Felder mit * sind Pflichtfelder</p>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -99,7 +116,25 @@ const Page4 = () => {
                                     <span>39,00 €</span>
                                 </div>
                             </div>
-                            <Button className="w-full mt-3">Button</Button>;
+                            <div className="flex flex-col gap-3 mt-3 border-b border-gray-400">
+                                <div className="flex justify-between">
+                                    <p>Kontrolle</p>
+                                    <span>39,00 €</span>
+                                </div>
+                            </div>
+                            <div className="mt-5">
+                                <div className="w-full">
+                                    <Input label="Username" />
+                                </div>
+                                <Checkbox label={
+                                    <Typography color="blue-gray" className="font-medium flex">I agree with the
+                                        <Typography as="a" href="#" color="blue" className="font-medium hover:text-blue-700 transition-colors">
+                                            &nbsp;terms and conditions
+                                        </Typography>.
+                                    </Typography>
+                                } />
+                                <Button className="w-full">Button</Button>;
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -108,4 +143,4 @@ const Page4 = () => {
     )
 }
 
-export default Page4
+export default Page5
